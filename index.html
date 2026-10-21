@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Master Studio — Formatter, Validator, Tree Inspector & Converter | abishek.in</title>
+  <meta name="description" content="Professional fullscreen JSON suite: Prettify & Minify, Auto-repair broken JSON, Interactive tree visualizer, JSONPath query engine, JSON Diff, and convert to TypeScript, CSV, YAML, XML, Go, and Python.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌲</text></svg>">
+</head>
+<body class="dark-theme">
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="header-left">
+      <a href="https://apps.abishek.in" class="brand" title="View all tools on apps.abishek.in">
+        <div class="brand-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">JSON<span class="brand-accent">Master</span></span>
+          <span class="badge">PRO</span>
+        </div>
+      </a>
+
+      <!-- Suite Switcher -->
+      <div class="suite-switcher">
+        <button class="switcher-btn" id="switcherBtn">
+          <span>All Tools</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="switcher-menu" id="switcherMenu">
+          <a href="https://apps.abishek.in" class="switcher-item highlight">🚀 Tools & Apps Hub (apps.abishek.in)</a>
+          <div class="switcher-divider"></div>
+          <a href="https://base64.abishek.in" class="switcher-item">⚡ Base64 Studio</a>
+          <a href="https://compiler.abishek.in" class="switcher-item">💻 Web Compiler (HTML/CSS/JS)</a>
+          <a href="https://json.abishek.in" class="switcher-item active">🌲 JSON Master Suite</a>
+          <a href="https://md.abishek.in" class="switcher-item">📝 Markdown Studio</a>
+          <a href="https://prettier.abishek.in" class="switcher-item">✨ Prettier Formatter</a>
+          <a href="https://image.abishek.in" class="switcher-item">🖼️ Image Compressor Pro</a>
+          <a href="https://pdf.abishek.in" class="switcher-item">📄 PDF Toolkit</a>
+          <a href="https://youtube.abishek.in" class="switcher-item">🎥 YouTube Downloader</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mode Navigation Tabs -->
+    <nav class="mode-tabs">
+      <button class="tab-btn active" data-tab="format">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="21" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg>
+        <span>Format & Validate</span>
+      </button>
+      <button class="tab-btn" data-tab="tree">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        <span>Tree Inspector</span>
+      </button>
+      <button class="tab-btn" data-tab="convert">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+        <span>Convert Format</span>
+      </button>
+      <button class="tab-btn" data-tab="query">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <span>JSONPath Query</span>
+      </button>
+      <button class="tab-btn" data-tab="diff">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="3" x2="12" y2="21"></line></svg>
+        <span>JSON Diff</span>
+      </button>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="header-right">
+      <button class="icon-btn" id="themeToggle" title="Toggle Theme">
+        <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <button class="icon-btn" id="fullscreenToggle" title="Toggle Fullscreen">
+        <svg class="enter-fs" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+        <svg class="exit-fs" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path></svg>
+      </button>
+      <a href="https://apps.abishek.in" class="btn-hub" target="_blank" rel="noopener">
+        <span>Hub</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- Workspace Container -->
+  <main class="json-workspace">
+    <!-- ================= TAB 1: FORMAT & VALIDATE ================= -->
+    <section class="tab-pane active" id="pane-format">
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div class="toolbar-group">
+          <button class="btn btn-primary btn-sm" id="btnFormat2">Format (2 Spaces)</button>
+          <button class="btn btn-secondary btn-sm" id="btnFormat4">4 Spaces</button>
+          <button class="btn btn-secondary btn-sm" id="btnFormatTab">Tab</button>
+          <button class="btn btn-secondary btn-sm" id="btnMinify">Minify / Compact</button>
+          <button class="btn btn-accent btn-sm" id="btnRepair" title="Auto-fix unquoted keys, single quotes & trailing commas">
+            <span>✨ Repair JSON</span>
+          </button>
+          <button class="btn btn-secondary btn-sm" id="btnSortKeys" title="Sort all keys alphabetically">A-Z Sort</button>
+        </div>
+
+        <div class="toolbar-group ml-auto">
+          <div class="dropdown-wrapper">
+            <button class="btn btn-secondary btn-sm" id="btnSampleMenu">
+              <span>Samples</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="dropdown-menu" id="sampleMenu">
+              <button class="menu-item" data-sample="users">User Profiles & Records</button>
+              <button class="menu-item" data-sample="ecommerce">E-Commerce Order & Items</button>
+              <button class="menu-item" data-sample="nested">Deeply Nested Config</button>
+              <button class="menu-item" data-sample="broken">Broken JSON (Test Repair)</button>
+            </div>
+          </div>
+
+          <label class="btn btn-secondary btn-sm upload-btn">
+            <input type="file" id="fileUpload" accept=".json,.txt" style="display:none;">
+            <span>Upload File</span>
+          </label>
+
+          <button class="btn btn-secondary btn-sm" id="btnClear">Clear</button>
+        </div>
+      </div>
+
+      <!-- Split Workspace -->
+      <div class="split-view">
+        <!-- Input Editor -->
+        <div class="editor-col">
+          <div class="col-header">
+            <div class="col-title">
+              <span>JSON Input / Editor</span>
+              <span class="status-indicator status-valid" id="statusBadge">Valid JSON</span>
+            </div>
+            <div class="col-actions">
+              <button class="col-action-btn" id="btnPaste">Paste</button>
+            </div>
+          </div>
+          <div class="editor-area-wrap">
+            <div class="line-numbers" id="editorLines"></div>
+            <textarea id="jsonInput" spellcheck="false" placeholder="Paste or type raw JSON here..."></textarea>
+            <div class="error-banner" id="errorBanner"></div>
+          </div>
+        </div>
+
+        <!-- Output Viewer -->
+        <div class="editor-col">
+          <div class="col-header">
+            <div class="col-title">
+              <span>Formatted Output</span>
+              <span class="meta-badge" id="outputMeta">0 lines · 0 B</span>
+            </div>
+            <div class="col-actions">
+              <button class="col-action-btn" id="btnCopy">Copy</button>
+              <button class="col-action-btn" id="btnDownload">Download .json</button>
+            </div>
+          </div>
+          <div class="editor-area-wrap">
+            <div class="line-numbers" id="outputLines"></div>
+            <textarea id="jsonOutput" readonly spellcheck="false" placeholder="Formatted JSON will appear here..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Metrics Status Bar -->
+      <div class="metrics-bar">
+        <div class="metric-item"><strong>Size:</strong> <span id="statSize">0 B</span></div>
+        <div class="metric-item"><strong>Lines:</strong> <span id="statLines">0</span></div>
+        <div class="metric-item"><strong>Objects:</strong> <span id="statObjects">0</span></div>
+        <div class="metric-item"><strong>Arrays:</strong> <span id="statArrays">0</span></div>
+        <div class="metric-item"><strong>Keys:</strong> <span id="statKeys">0</span></div>
+        <div class="metric-item"><strong>Depth:</strong> <span id="statDepth">0</span></div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 2: INTERACTIVE TREE INSPECTOR ================= -->
+    <section class="tab-pane" id="pane-tree">
+      <div class="tree-controls-bar">
+        <div class="tree-tools-group">
+          <button class="btn btn-secondary btn-sm" id="btnExpandAll">Expand All</button>
+          <button class="btn btn-secondary btn-sm" id="btnCollapseAll">Collapse All</button>
+        </div>
+        <div class="tree-search-group">
+          <input type="text" id="treeSearchInput" placeholder="Filter keys or values...">
+        </div>
+      </div>
+      <div class="tree-stage" id="treeStage">
+        <div class="tree-empty">Please enter valid JSON in the Formatter tab to view the interactive tree.</div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 3: CONVERT FORMAT ================= -->
+    <section class="tab-pane" id="pane-convert">
+      <div class="toolbar">
+        <div class="toolbar-group">
+          <span class="toolbar-label">Target Format:</span>
+          <select id="convertTargetSelect" class="select-input">
+            <option value="ts" selected>TypeScript Interfaces (Types)</option>
+            <option value="csv">CSV (Comma-Separated Values)</option>
+            <option value="yaml">YAML</option>
+            <option value="xml">XML Document</option>
+            <option value="python">Python Dataclass / Dict</option>
+            <option value="go">Go Struct</option>
+          </select>
+          <button class="btn btn-primary btn-sm" id="btnRunConvert">Convert Now</button>
+        </div>
+        <div class="toolbar-group ml-auto">
+          <button class="btn btn-secondary btn-sm" id="btnCopyConverted">Copy Result</button>
+          <button class="btn btn-secondary btn-sm" id="btnDownloadConverted">Download</button>
+        </div>
+      </div>
+      <div class="convert-workspace">
+        <textarea id="convertedOutput" readonly spellcheck="false" placeholder="Converted result will appear here..."></textarea>
+      </div>
+    </section>
+
+    <!-- ================= TAB 4: JSONPATH QUERY ================= -->
+    <section class="tab-pane" id="pane-query">
+      <div class="query-toolbar">
+        <div class="query-input-wrap">
+          <span class="query-icon">🔎</span>
+          <input type="text" id="jsonPathInput" placeholder="e.g. $.users[*].name or $.items[0] or $.orders[?(@.price > 100)]" value="$.users[*].name">
+          <button class="btn btn-primary btn-sm" id="btnRunQuery">Query</button>
+        </div>
+      </div>
+      <div class="query-workspace">
+        <div class="query-col">
+          <div class="col-header"><div class="col-title">Query Results</div></div>
+          <textarea id="queryResultText" readonly spellcheck="false" placeholder="Evaluated JSONPath query results..."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 5: JSON DIFF ================= -->
+    <section class="tab-pane" id="pane-diff">
+      <div class="toolbar">
+        <button class="btn btn-primary btn-sm" id="btnCompareDiff">Compare JSONs</button>
+        <button class="btn btn-secondary btn-sm" id="btnDiffSample">Load Diff Sample</button>
+        <button class="btn btn-secondary btn-sm" id="btnDiffClear">Clear</button>
+      </div>
+      <div class="diff-split-view">
+        <div class="editor-col">
+          <div class="col-header"><div class="col-title">Original JSON (Left)</div></div>
+          <textarea id="diffInputA" class="diff-textarea" placeholder="Paste original JSON..." spellcheck="false"></textarea>
+        </div>
+        <div class="editor-col">
+          <div class="col-header"><div class="col-title">Modified JSON (Right)</div></div>
+          <textarea id="diffInputB" class="diff-textarea" placeholder="Paste modified JSON..." spellcheck="false"></textarea>
+        </div>
+      </div>
+      <div class="diff-results-pane" id="diffResultsPane">
+        <div class="diff-empty">Click "Compare JSONs" to inspect differences side-by-side.</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
