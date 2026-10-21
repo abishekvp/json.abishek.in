@@ -45,7 +45,6 @@ switcherBtn?.addEventListener('click', (e) => {
 
 document.addEventListener('click', () => {
   switcherMenu?.classList.remove('show');
-  document.getElementById('sampleMenu')?.classList.remove('show');
 });
 
 // ================= TAB NAVIGATION =================
@@ -97,8 +96,6 @@ const btnPaste = document.getElementById('btnPaste');
 const btnCopy = document.getElementById('btnCopy');
 const btnDownload = document.getElementById('btnDownload');
 const fileUpload = document.getElementById('fileUpload');
-const btnSampleMenu = document.getElementById('btnSampleMenu');
-const sampleMenu = document.getElementById('sampleMenu');
 
 let parsedData = null;
 
@@ -337,55 +334,6 @@ fileUpload?.addEventListener('change', (e) => {
     validateAndFormat(2);
   };
   reader.readAsText(file);
-});
-
-// Samples
-btnSampleMenu?.addEventListener('click', (e) => {
-  e.stopPropagation();
-  sampleMenu?.classList.toggle('show');
-});
-
-const SAMPLES = {
-  users: [
-    { id: 101, name: "Alice Vance", role: "Principal Engineer", email: "alice@example.com", active: true, badges: ["admin", "core"] },
-    { id: 102, name: "David Miller", role: "Security Architect", email: "david@example.com", active: false, badges: ["security"] },
-    { id: 103, name: "Sara Connor", role: "DevOps Lead", email: "sara@example.com", active: true, badges: ["cloud", "k8s"] }
-  ],
-  ecommerce: {
-    orderId: "ORD-94821",
-    timestamp: "2026-10-21T07:15:00Z",
-    customer: { id: "CUST-41", name: "Sarah Jenkins", tier: "Gold VIP", verified: true },
-    items: [
-      { sku: "SKU-PRO-01", name: "Mechanical Keyboard", price: 149.99, quantity: 1 },
-      { sku: "SKU-MON-27", name: "4K IPS Monitor 144Hz", price: 499.50, quantity: 2 }
-    ],
-    billing: { subtotal: 1148.99, tax: 91.92, shipping: 0.00, total: 1240.91, currency: "USD", paid: true }
-  },
-  nested: {
-    app: {
-      name: "Abishek Cloud Suite",
-      version: "3.2.0",
-      environment: "production",
-      clusters: [
-        { region: "us-east-1", nodes: 12, healthy: true, loadAvg: 0.42 },
-        { region: "eu-west-1", nodes: 8, healthy: true, loadAvg: 0.38 }
-      ],
-      features: { sso: true, auditLogs: true, experimentalUi: false, rateLimitRps: 5000 }
-    }
-  },
-  broken: `{\n  name: 'Broken JSON Example',\n  description: 'Missing double quotes on keys, single quotes, and trailing comma',\n  items: [1, 2, 3,],\n  valid: True,\n  // Comment inside JSON\n}`
-};
-
-document.querySelectorAll('#sampleMenu .menu-item').forEach((item) => {
-  item.addEventListener('click', () => {
-    const key = item.dataset.sample;
-    if (key === 'broken') {
-      jsonInput.value = SAMPLES.broken;
-    } else {
-      jsonInput.value = JSON.stringify(SAMPLES[key], null, 2);
-    }
-    validateAndFormat(2);
-  });
 });
 
 // ================= TAB 2: INTERACTIVE TREE INSPECTOR =================
@@ -753,27 +701,8 @@ jsonPathInput?.addEventListener('keydown', (e) => {
 const diffInputA = document.getElementById('diffInputA');
 const diffInputB = document.getElementById('diffInputB');
 const btnCompareDiff = document.getElementById('btnCompareDiff');
-const btnDiffSample = document.getElementById('btnDiffSample');
 const btnDiffClear = document.getElementById('btnDiffClear');
 const diffResultsPane = document.getElementById('diffResultsPane');
-
-btnDiffSample?.addEventListener('click', () => {
-  diffInputA.value = JSON.stringify({
-    name: "JSON Master",
-    version: "1.0.0",
-    features: ["format", "minify", "tree"],
-    settings: { autoFormat: false, indent: 2 }
-  }, null, 2);
-
-  diffInputB.value = JSON.stringify({
-    name: "JSON Master Studio Pro",
-    version: "1.1.0",
-    features: ["format", "minify", "tree", "diff", "converters"],
-    settings: { autoFormat: true, indent: 2, theme: "dark" }
-  }, null, 2);
-
-  compareDiff();
-});
 
 btnDiffClear?.addEventListener('click', () => {
   diffInputA.value = '';
@@ -826,6 +755,5 @@ function compareDiff() {
 
 btnCompareDiff?.addEventListener('click', compareDiff);
 
-// Initial Load with sample data
-jsonInput.value = JSON.stringify(SAMPLES.ecommerce, null, 2);
+// Initialize the empty editor and its status indicators.
 validateAndFormat(2);

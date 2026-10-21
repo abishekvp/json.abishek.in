@@ -105,19 +105,6 @@
         </div>
 
         <div class="toolbar-group ml-auto">
-          <div class="dropdown-wrapper">
-            <button class="btn btn-secondary btn-sm" id="btnSampleMenu">
-              <span>Samples</span>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            </button>
-            <div class="dropdown-menu" id="sampleMenu">
-              <button class="menu-item" data-sample="users">User Profiles & Records</button>
-              <button class="menu-item" data-sample="ecommerce">E-Commerce Order & Items</button>
-              <button class="menu-item" data-sample="nested">Deeply Nested Config</button>
-              <button class="menu-item" data-sample="broken">Broken JSON (Test Repair)</button>
-            </div>
-          </div>
-
           <label class="btn btn-secondary btn-sm upload-btn">
             <input type="file" id="fileUpload" accept=".json,.txt" style="display:none;">
             <span>Upload File</span>
@@ -134,7 +121,7 @@
           <div class="col-header">
             <div class="col-title">
               <span>JSON Input / Editor</span>
-              <span class="status-indicator status-valid" id="statusBadge">Valid JSON</span>
+              <span class="status-indicator" id="statusBadge">Empty</span>
             </div>
             <div class="col-actions">
               <button class="col-action-btn" id="btnPaste">Paste</button>
@@ -142,7 +129,7 @@
           </div>
           <div class="editor-area-wrap">
             <div class="line-numbers" id="editorLines"></div>
-            <textarea id="jsonInput" spellcheck="false" placeholder="Paste or type raw JSON here..."></textarea>
+            <textarea id="jsonInput" spellcheck="false"></textarea>
             <div class="error-banner" id="errorBanner"></div>
           </div>
         </div>
@@ -161,7 +148,7 @@
           </div>
           <div class="editor-area-wrap">
             <div class="line-numbers" id="outputLines"></div>
-            <textarea id="jsonOutput" readonly spellcheck="false" placeholder="Formatted JSON will appear here..."></textarea>
+            <textarea id="jsonOutput" readonly spellcheck="false"></textarea>
           </div>
         </div>
       </div>
@@ -185,7 +172,7 @@
           <button class="btn btn-secondary btn-sm" id="btnCollapseAll">Collapse All</button>
         </div>
         <div class="tree-search-group">
-          <input type="text" id="treeSearchInput" placeholder="Filter keys or values...">
+          <input type="text" id="treeSearchInput">
         </div>
       </div>
       <div class="tree-stage" id="treeStage">
@@ -214,7 +201,7 @@
         </div>
       </div>
       <div class="convert-workspace">
-        <textarea id="convertedOutput" readonly spellcheck="false" placeholder="Converted result will appear here..."></textarea>
+        <textarea id="convertedOutput" readonly spellcheck="false"></textarea>
       </div>
     </section>
 
@@ -223,14 +210,14 @@
       <div class="query-toolbar">
         <div class="query-input-wrap">
           <span class="query-icon">🔎</span>
-          <input type="text" id="jsonPathInput" placeholder="e.g. $.users[*].name or $.items[0] or $.orders[?(@.price > 100)]" value="$.users[*].name">
+          <input type="text" id="jsonPathInput">
           <button class="btn btn-primary btn-sm" id="btnRunQuery">Query</button>
         </div>
       </div>
       <div class="query-workspace">
         <div class="query-col">
           <div class="col-header"><div class="col-title">Query Results</div></div>
-          <textarea id="queryResultText" readonly spellcheck="false" placeholder="Evaluated JSONPath query results..."></textarea>
+          <textarea id="queryResultText" readonly spellcheck="false"></textarea>
         </div>
       </div>
     </section>
@@ -239,17 +226,16 @@
     <section class="tab-pane" id="pane-diff">
       <div class="toolbar">
         <button class="btn btn-primary btn-sm" id="btnCompareDiff">Compare JSONs</button>
-        <button class="btn btn-secondary btn-sm" id="btnDiffSample">Load Diff Sample</button>
         <button class="btn btn-secondary btn-sm" id="btnDiffClear">Clear</button>
       </div>
       <div class="diff-split-view">
         <div class="editor-col">
           <div class="col-header"><div class="col-title">Original JSON (Left)</div></div>
-          <textarea id="diffInputA" class="diff-textarea" placeholder="Paste original JSON..." spellcheck="false"></textarea>
+          <textarea id="diffInputA" class="diff-textarea" spellcheck="false"></textarea>
         </div>
         <div class="editor-col">
           <div class="col-header"><div class="col-title">Modified JSON (Right)</div></div>
-          <textarea id="diffInputB" class="diff-textarea" placeholder="Paste modified JSON..." spellcheck="false"></textarea>
+          <textarea id="diffInputB" class="diff-textarea" spellcheck="false"></textarea>
         </div>
       </div>
       <div class="diff-results-pane" id="diffResultsPane">
