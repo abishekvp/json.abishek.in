@@ -5,8 +5,7 @@ import {
   bytesToSize,
   calculateMetrics,
   sortObjectKeys,
-  repairJsonText,
-  SAMPLES
+  repairJsonText
 } from '@/lib/json';
 import {
   Wand2,
@@ -17,11 +16,9 @@ import {
   Trash2,
   UploadCloud,
   ClipboardPaste,
-  ChevronDown,
   AlertCircle,
   FileCode,
-  ShieldCheck,
-  Layers
+  ShieldCheck
 } from 'lucide-react';
 
 interface FormatStudioProps {
@@ -39,7 +36,6 @@ export const FormatStudio: React.FC<FormatStudioProps> = ({
 }) => {
   const [indent, setIndent] = useState<number | string>(2);
   const [copied, setCopied] = useState(false);
-  const [sampleMenuOpen, setSampleMenuOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Formatting and Validation
@@ -210,60 +206,6 @@ export const FormatStudio: React.FC<FormatStudioProps> = ({
             <span className="hidden sm:inline">Sort Keys</span>
           </button>
 
-          {/* Sample Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => setSampleMenuOpen(!sampleMenuOpen)}
-              className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-subtle hover:bg-surface-hover border border-surface-border text-slate-300 hover:text-white transition-colors"
-            >
-              <span>Load Sample</span>
-              <ChevronDown className="w-3 h-3" />
-            </button>
-
-            {sampleMenuOpen && (
-              <div
-                className="absolute top-full left-0 mt-1.5 w-48 bg-surface-card border border-surface-border rounded-xl shadow-2xl p-1.5 z-50 flex flex-col gap-0.5"
-                onMouseLeave={() => setSampleMenuOpen(false)}
-              >
-                <button
-                  onClick={() => {
-                    setRawInput(JSON.stringify(SAMPLES.ecommerce, null, 2));
-                    setSampleMenuOpen(false);
-                  }}
-                  className="w-full text-left px-3 py-1.5 text-xs text-slate-300 hover:text-white hover:bg-surface-hover rounded-lg"
-                >
-                  🛒 E-Commerce Order
-                </button>
-                <button
-                  onClick={() => {
-                    setRawInput(JSON.stringify(SAMPLES.users, null, 2));
-                    setSampleMenuOpen(false);
-                  }}
-                  className="w-full text-left px-3 py-1.5 text-xs text-slate-300 hover:text-white hover:bg-surface-hover rounded-lg"
-                >
-                  👥 User Directory
-                </button>
-                <button
-                  onClick={() => {
-                    setRawInput(JSON.stringify(SAMPLES.nested, null, 2));
-                    setSampleMenuOpen(false);
-                  }}
-                  className="w-full text-left px-3 py-1.5 text-xs text-slate-300 hover:text-white hover:bg-surface-hover rounded-lg"
-                >
-                  🏢 Nested Cloud Config
-                </button>
-                <button
-                  onClick={() => {
-                    setRawInput(SAMPLES.broken);
-                    setSampleMenuOpen(false);
-                  }}
-                  className="w-full text-left px-3 py-1.5 text-xs text-yellow-400 hover:bg-yellow-500/10 rounded-lg"
-                >
-                  ⚠️ Broken Syntax Sample
-                </button>
-              </div>
-            )}
-          </div>
         </div>
 
         {/* Right Action Buttons */}
@@ -354,7 +296,6 @@ export const FormatStudio: React.FC<FormatStudioProps> = ({
             <textarea
               value={rawInput}
               onChange={(e) => setRawInput(e.target.value)}
-              placeholder="Paste or type raw JSON here..."
               spellCheck={false}
               className="flex-1 p-3 bg-transparent text-slate-100 font-mono text-[12px] leading-relaxed resize-none focus:outline-none selection:bg-blue-600/30 overflow-auto whitespace-pre"
             />
@@ -401,7 +342,6 @@ export const FormatStudio: React.FC<FormatStudioProps> = ({
             <textarea
               readOnly
               value={formattedOutput}
-              placeholder="Formatted output will appear here..."
               spellCheck={false}
               className="flex-1 p-3 bg-transparent text-slate-100 font-mono text-[12px] leading-relaxed resize-none focus:outline-none selection:bg-blue-600/30 overflow-auto whitespace-pre"
             />

@@ -39,7 +39,6 @@ export const TreeInspector: React.FC<TreeInspectorProps> = ({ data }) => {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search keys or values..."
               className="bg-surface-subtle border border-surface-border rounded-lg pl-8 pr-3 py-1 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 w-48 sm:w-64"
             />
           </div>

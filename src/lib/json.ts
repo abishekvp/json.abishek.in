@@ -249,34 +249,3 @@ export function computeJsonDiff(obj1: any, obj2: any): DiffEntry[] {
   findDiffs(obj1, obj2);
   return diffs;
 }
-
-export const SAMPLES = {
-  users: [
-    { id: 101, name: "Alice Vance", role: "Principal Engineer", email: "alice@example.com", active: true, badges: ["admin", "core"] },
-    { id: 102, name: "David Miller", role: "Security Architect", email: "david@example.com", active: false, badges: ["security"] },
-    { id: 103, name: "Sara Connor", role: "DevOps Lead", email: "sara@example.com", active: true, badges: ["cloud", "k8s"] }
-  ],
-  ecommerce: {
-    orderId: "ORD-94821",
-    timestamp: "2026-10-21T07:15:00Z",
-    customer: { id: "CUST-41", name: "Sarah Jenkins", tier: "Gold VIP", verified: true },
-    items: [
-      { sku: "SKU-PRO-01", name: "Mechanical Keyboard", price: 149.99, quantity: 1 },
-      { sku: "SKU-MON-27", name: "4K IPS Monitor 144Hz", price: 499.50, quantity: 2 }
-    ],
-    billing: { subtotal: 1148.99, tax: 91.92, shipping: 0.00, total: 1240.91, currency: "USD", paid: true }
-  },
-  nested: {
-    app: {
-      name: "Abishek Cloud Suite",
-      version: "3.2.0",
-      environment: "production",
-      clusters: [
-        { region: "us-east-1", nodes: 12, healthy: true, loadAvg: 0.42 },
-        { region: "eu-west-1", nodes: 8, healthy: true, loadAvg: 0.38 }
-      ],
-      features: { sso: true, auditLogs: true, experimentalUi: false, rateLimitRps: 5000 }
-    }
-  },
-  broken: `{\n  name: 'Broken JSON Example',\n  description: 'Missing double quotes on keys, single quotes, and trailing comma',\n  items: [1, 2, 3,],\n  valid: True,\n  // Comment inside JSON\n}`
-};

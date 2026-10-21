@@ -6,7 +6,6 @@ import { DiffEntry } from '@/types';
 import {
   GitCompare,
   Trash2,
-  Sparkles,
   CheckCircle,
   PlusCircle,
   MinusCircle,
@@ -14,31 +13,8 @@ import {
 } from 'lucide-react';
 
 export const DiffStudio: React.FC = () => {
-  const [jsonA, setJsonA] = useState(
-    JSON.stringify(
-      {
-        appName: 'JSON Suite',
-        version: '1.0.0',
-        features: ['format', 'tree', 'minify'],
-        settings: { autoFormat: false, indent: 2 }
-      },
-      null,
-      2
-    )
-  );
-
-  const [jsonB, setJsonB] = useState(
-    JSON.stringify(
-      {
-        appName: 'JSON Master Studio Pro',
-        version: '1.1.0',
-        features: ['format', 'tree', 'minify', 'diff', 'converters'],
-        settings: { autoFormat: true, indent: 2, theme: 'dark' }
-      },
-      null,
-      2
-    )
-  );
+  const [jsonA, setJsonA] = useState('');
+  const [jsonB, setJsonB] = useState('');
 
   const [diffs, setDiffs] = useState<DiffEntry[]>([]);
   const [hasCompared, setHasCompared] = useState(false);
@@ -111,7 +87,6 @@ export const DiffStudio: React.FC = () => {
             <textarea
               value={jsonA}
               onChange={(e) => setJsonA(e.target.value)}
-              placeholder="Paste original JSON..."
               spellCheck={false}
               className="w-full h-full p-4 bg-transparent text-slate-100 font-mono text-[12px] leading-relaxed resize-none focus:outline-none selection:bg-blue-600/30 whitespace-pre"
             />
@@ -128,7 +103,6 @@ export const DiffStudio: React.FC = () => {
             <textarea
               value={jsonB}
               onChange={(e) => setJsonB(e.target.value)}
-              placeholder="Paste modified JSON..."
               spellCheck={false}
               className="w-full h-full p-4 bg-transparent text-slate-100 font-mono text-[12px] leading-relaxed resize-none focus:outline-none selection:bg-blue-600/30 whitespace-pre"
             />

@@ -5,9 +5,7 @@ import { evaluateJsonPath } from '@/lib/json';
 import {
   Search,
   Copy,
-  Check,
-  Terminal,
-  Sparkles
+  Check
 } from 'lucide-react';
 
 interface JsonPathStudioProps {
@@ -15,7 +13,7 @@ interface JsonPathStudioProps {
 }
 
 export const JsonPathStudio: React.FC<JsonPathStudioProps> = ({ data }) => {
-  const [query, setQuery] = useState('$.items[*].name');
+  const [query, setQuery] = useState('');
   const [copied, setCopied] = useState(false);
 
   const { resultText, count } = useMemo(() => {
@@ -58,7 +56,6 @@ export const JsonPathStudio: React.FC<JsonPathStudioProps> = ({ data }) => {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="e.g. $.items[*].name or $.customer.tier"
               className="w-full bg-surface-subtle border border-surface-border rounded-lg pl-9 pr-4 py-2 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
             />
           </div>
@@ -72,18 +69,7 @@ export const JsonPathStudio: React.FC<JsonPathStudioProps> = ({ data }) => {
           </button>
         </div>
 
-        {/* Quick query chips */}
-        <div className="flex items-center gap-2 text-xs flex-wrap">
-          <span className="text-slate-400 font-medium">Quick Suggestions:</span>
-          {['$.*', '$.items[*]', '$.items[0]', '$.customer.name', '$.billing.total'].map((chip) => (
-            <button
-              key={chip}
-              onClick={() => setQuery(chip)}
-              className="px-2 py-0.5 rounded bg-surface-subtle hover:bg-surface-hover border border-surface-border text-slate-300 font-mono text-[11px] transition-colors"
-            >
-              {chip}
-            </button>
-          ))}
+        <div className="flex items-center text-xs">
           <span className="text-slate-500 ml-auto font-mono text-[11px]">
             {count} {count === 1 ? 'result' : 'results'} matched
           </span>
