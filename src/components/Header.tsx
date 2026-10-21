@@ -40,7 +40,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
       <div className="flex items-center gap-3">
         <a href="https://apps.abishek.in" className="flex items-center gap-2 group text-white">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
-            <span className="text-base font-mono">🌲</span>
+            <Braces className="w-4 h-4 text-white" />
           </div>
           <div className="flex items-center gap-1.5">
             <span className="font-bold text-sm tracking-tight text-white">
@@ -68,32 +68,32 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
               onMouseLeave={() => setSuiteOpen(false)}
             >
               <a href="https://apps.abishek.in" className="flex items-center gap-2 px-2.5 py-2 text-xs font-semibold text-blue-400 hover:bg-blue-500/10 rounded-lg">
-                🚀 Tools & Apps Hub (apps.abishek.in)
+                Tools & Apps Hub (apps.abishek.in)
               </a>
               <div className="h-px bg-surface-border my-1" />
               <a href="https://json.abishek.in" className="flex items-center gap-2 px-2.5 py-1.5 text-xs font-medium text-white bg-blue-600/20 rounded-lg">
-                🌲 JSON Master Suite
+                JSON Master Suite
               </a>
               <a href="https://base64.abishek.in" className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-slate-300 hover:text-white hover:bg-surface-hover rounded-lg">
-                ⚡ Base64 Studio
+                Base64 Studio
               </a>
               <a href="https://compiler.abishek.in" className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-slate-300 hover:text-white hover:bg-surface-hover rounded-lg">
-                💻 Web Compiler (HTML/CSS/JS)
+                Web Compiler (HTML/CSS/JS)
               </a>
               <a href="https://md.abishek.in" className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-slate-300 hover:text-white hover:bg-surface-hover rounded-lg">
-                📝 Markdown Studio Pro
+                Markdown Studio Pro
               </a>
               <a href="https://prettier.abishek.in" className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-slate-300 hover:text-white hover:bg-surface-hover rounded-lg">
-                ✨ Prettier Code Formatter
+                Prettier Code Formatter
               </a>
               <a href="https://image.abishek.in" className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-slate-300 hover:text-white hover:bg-surface-hover rounded-lg">
-                🖼️ Image Compressor Pro
+                Image Compressor Pro
               </a>
               <a href="https://pdf.abishek.in" className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-slate-300 hover:text-white hover:bg-surface-hover rounded-lg">
-                📄 PDF Toolkit
+                PDF Toolkit
               </a>
               <a href="https://youtube.abishek.in" className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-slate-300 hover:text-white hover:bg-surface-hover rounded-lg">
-                🎥 YouTube Downloader
+                YouTube Downloader
               </a>
             </div>
           )}
